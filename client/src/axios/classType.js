@@ -1,5 +1,5 @@
-import axios, { Axios } from "axios";
-const URL = "http://localhost:3000/api/classtypes";
+import axios from "axios";
+const URL = "https://zoofeed-api-gamma.vercel.app/api/classtypes";
 
 const getClassType = async (cb) => {
     try {
