@@ -72,7 +72,7 @@ const LoginPage = ({ loginCbHandler, loginStatus, userCheck, setUserCheck }) => 
             </div>
             {/* content */}
             <div className="w-full h-full flex justify-end z-50">
-                <div className="w-1/3 md:mt-0 sm:max-w-md xl:p-0 z-50">
+                <div className="xl:max-w-md md:mt-0 sm:max-w-md xl:p-0 z-50">
                     <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
                         <img src={Logo} alt="Logo" className='w-1/4 m-auto' />
                         <h1 className="font-inter text-xl font-semibold leading-tight tracking-tight text-blue-gray-900 md:text-2xl">
