@@ -4,8 +4,7 @@ import { createUser } from '../../axios/user'
 import { useFormik } from "formik";
 import * as yup from "yup";
 import { Checkbox, Input } from "@material-tailwind/react";
-import Image from '../../assets/zoofeed-bg.png'
-import Logo from '../../assets/zoo_feed-01.png'
+import BodyAuthPage from './layout/BodyAuthPage';
 
 const SignUpPage = ({ loginCbHandler }) => {
     const navigate = useNavigate();
@@ -70,92 +69,69 @@ const SignUpPage = ({ loginCbHandler }) => {
         formik.setFieldValue(target.name, target.value);
     };
     return (
-        <>
-            {/* bg image */}
-            <div className='w-4/5  h-full fixed -z-50'>
-                <div className='bg-black w-full h-full opacity-10 absolute'></div>
-                <img
-                    src={Image}
-                    alt="Background"
-                    className='h-full object-left-bottom object-cover'
-                />
-            </div>
-            {/* bg white left */}
-            <div className="fixed w-1/3 h-full right-0 bg-white -z-40">
-            </div>
-            {/* content */}
-            <div className='w-full h-full flex justify-end z-50'>
-                <div className="md:mt-0 sm:max-w-md xl:p-0 z-50">
-                    <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
-                        <img src={Logo} alt="Logo" className='w-1/4 m-auto' />
-                        <h1 className="text-xl font-inter font-semibold leading-tight tracking-tight text-gray-900 md:text-2xl">
-                            Create an account
-                        </h1>
-                        <form onSubmit={formik.handleSubmit}>
-                            <div className='space-y-4'>
-                                <Input
-                                    variant='outlined'
-                                    label='Name'
-                                    name='name'
-                                    onChange={handleForm}
-                                    onBlur={() => handlefocus('name')}
-                                />
-                                {
-                                    name ?
-                                        <span className='text-pink-600 font-light text-sm mt-1'>{formik.errors.name}</span> : null
-                                }
-                                <Input
-                                    variant='outlined'
-                                    label='Age'
-                                    name='age'
-                                    onChange={handleForm}
-                                    onBlur={() => handlefocus('age')}
-                                />
-                                {
-                                    age ?
-                                        <span className='text-pink-600 font-light text-sm mt-1'>{formik.errors.age}</span> : null
-                                }
-                                <Input
-                                    variant='outlined'
-                                    label='Email'
-                                    name='email'
-                                    onChange={handleForm}
-                                    onBlur={() => handlefocus('email')}
-                                />
-                                {
-                                    email ?
-                                        <span className='text-pink-600 font-light text-sm mt-1'>{formik.errors.email}</span> : null
-                                }
-                                <Input
-                                    variant='outlined'
-                                    label='Password'
-                                    type={`${showPass ? 'text' : 'password'}`}
-                                    name='password'
-                                    onChange={handleForm}
-                                    onBlur={() => handlefocus('password')}
-                                />
-                            </div>
-                            <div className='flex flex-col'>
-                                <Checkbox
-                                    onChange={showPassword}
-                                    label="Show"
-                                    color='teal'
-                                    className='text-sm'
-                                />
-                                {
-                                    password ?
-                                        <span className='text-pink-600 font-light text-sm mt-1'>{formik.errors.password}</span> : null
-                                }
-                            </div>
-                            <button type="submit" className="mt-5 w-full text-white bg-[#019267] hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Sign Up</button>
-                            <p className="mt-3 text-sm font-light text-gray-500 dark:text-gray-400">
-                                Already have an account? <Link to={'/login'} className="font-medium text-primary-600 hover:underline dark:text-primary-500">Login</Link>
-                            </p>
-                        </form>
-                    </div>
+        <BodyAuthPage>
+            <form onSubmit={formik.handleSubmit}>
+                <div className='space-y-4'>
+                    <Input
+                        variant='outlined'
+                        label='Name'
+                        name='name'
+                        onChange={handleForm}
+                        onBlur={() => handlefocus('name')}
+                    />
+                    {
+                        name ?
+                            <span className='text-pink-600 font-light text-sm mt-1'>{formik.errors.name}</span> : null
+                    }
+                    <Input
+                        variant='outlined'
+                        label='Age'
+                        name='age'
+                        onChange={handleForm}
+                        onBlur={() => handlefocus('age')}
+                    />
+                    {
+                        age ?
+                            <span className='text-pink-600 font-light text-sm mt-1'>{formik.errors.age}</span> : null
+                    }
+                    <Input
+                        variant='outlined'
+                        label='Email'
+                        name='email'
+                        onChange={handleForm}
+                        onBlur={() => handlefocus('email')}
+                    />
+                    {
+                        email ?
+                            <span className='text-pink-600 font-light text-sm mt-1'>{formik.errors.email}</span> : null
+                    }
+                    <Input
+                        variant='outlined'
+                        label='Password'
+                        type={`${showPass ? 'text' : 'password'}`}
+                        name='password'
+                        onChange={handleForm}
+                        onBlur={() => handlefocus('password')}
+                    />
                 </div>
-            </div>
-        </>
+                <div className='flex flex-col'>
+                    <Checkbox
+                        onChange={showPassword}
+                        label="Show"
+                        color='teal'
+                        className='text-sm'
+                    />
+                    {
+                        password ?
+                            <span className='text-pink-600 font-light text-sm mt-1'>{formik.errors.password}</span> : null
+                    }
+                </div>
+                <button type="submit" className="mt-5 w-full text-white bg-[#019267] hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Sign Up</button>
+                <p className="mt-3 text-sm font-light text-gray-500 dark:text-gray-400">
+                    Already have an account? <Link to={'/login'} className="font-medium text-primary-600 hover:underline dark:text-primary-500">Login</Link>
+                </p>
+            </form>
+        </BodyAuthPage>
     )
 }
 
