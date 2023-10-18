@@ -1,25 +1,25 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from 'react'
-import { login } from '../../axios/user'
 import { Link, useNavigate } from 'react-router-dom'
 import { useFormik } from "formik";
 import * as yup from "yup";
 import { Checkbox, Input } from "@material-tailwind/react";
+import { useSelector, useDispatch } from 'react-redux';
+
+import { login } from '../../redux/authSlice';
 import BodyAuthPage from './layout/BodyAuthPage';
+import Loading from '../../components/Loading';
 
-const LoginPage = ({ loginCbHandler, loginStatus, userCheck, setUserCheck }) => {
-    const navigate = useNavigate();
+const LoginPage = () => {
+    const navigate = useNavigate()
+    const dispatch = useDispatch()
+    const { loading, isLogin } = useSelector((state => state.auth))
     const [showPass, setShowPass] = useState(false)
-    const [email, setEmail] = useState(false);
-    const [password, setPassword] = useState(false);
-
-    useEffect(() => {
-        if (loginStatus) navigate('/');
-
-    }, [loginStatus])
+    const [email, setEmail] = useState(false)
+    const [password, setPassword] = useState(false)
 
     const submitHandler = () => {
-        login(formik.values, loginCbHandler, false);
-        navigate('/')
+        dispatch(login(formik.values))
     }
 
     const handleFocus = (e) => {
@@ -55,6 +55,13 @@ const LoginPage = ({ loginCbHandler, loginStatus, userCheck, setUserCheck }) => 
         const { target } = event;
         formik.setFieldValue(target.name, target.value);
     };
+
+    useEffect(() => {
+        if (isLogin) {
+            navigate('/')
+        }
+    }, [isLogin])
+
     return (
         <BodyAuthPage>
             <form onSubmit={formik.handleSubmit}>
@@ -93,7 +100,7 @@ const LoginPage = ({ loginCbHandler, loginStatus, userCheck, setUserCheck }) => 
                             : null
                     }
                 </div>
-                <button type='submit' className="mt-5 w-full text-white bg-[#019267] hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Sign in</button>
+                <button type='submit' className="mt-5 w-full text-white bg-[#019267] hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"> {loading.login ? <Loading /> : "Login"}</button>
                 <p className="mt-3 text-sm font-light text-blue-gray-500 dark:text-blue-gray-400">
                     Don’t have an account yet? <Link to={'/register'} className="font-medium text-primary-600 hover:underline dark:text-primary-500">Create an account</Link>
                 </p>

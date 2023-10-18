@@ -1,6 +1,7 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { FaMoon, FaSun } from 'react-icons/fa';
-import { useNavigate, Link } from 'react-router-dom';
+import React, { useState, useRef, useEffect } from 'react'
+import { FaMoon, FaSun } from 'react-icons/fa'
+import { useNavigate, Link } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 import {
     Tooltip,
     Menu,
@@ -11,7 +12,8 @@ import {
     Typography,
 } from "@material-tailwind/react";
 
-const NavBar = ({ loginCbHandler, userData, onProfile, setOnProfile }) => {
+const NavBar = () => {
+    const { user } = useSelector((state) => state.auth)
     const host = window.location.hostname;
     const protocol = window.location.protocol;
     const navigate = useNavigate();
@@ -22,7 +24,6 @@ const NavBar = ({ loginCbHandler, userData, onProfile, setOnProfile }) => {
 
     const logoutHandler = () => {
         localStorage.clear()
-        loginCbHandler(false)
         navigate('/login')
     }
 
@@ -80,7 +81,7 @@ const NavBar = ({ loginCbHandler, userData, onProfile, setOnProfile }) => {
                                     variant="circular"
                                     alt="candice wu"
                                     className="cursor-pointer"
-                                    src={`http://localhost:3000/${userData.imageUrl}`}
+                                    src={`https://zoofeed-api-gamma.vercel.app/${user.imageUrl}`}
                                 />
                             </MenuHandler>
                             <MenuList>

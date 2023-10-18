@@ -1,32 +1,20 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react'
 import DashboardCard from '../components/DashboardCard';
 import { FaStickerMule, FaApple, FaUser } from 'react-icons/fa'
 import { readDataAnimal } from '../axios/animal';
 import { readData } from '../axios/food';
 import { getAllUser } from '../axios/user';
-import { useNavigate } from 'react-router-dom';
 
-const HomePage = ({ loginStatus, setOnProfile }) => {
-    const navigate = useNavigate();
+const HomePage = () => {
     const [animals, setAnimals] = useState([])
     const [foods, setFoods] = useState([])
     const [users, setUsers] = useState([])
 
-    const userCheck = () => {
-        if (loginStatus == false) {
-            navigate('/login');
-        } else {
-            return true;
-        }
-    }
-
     useEffect(() => {
-        if (userCheck()) {
-            setOnProfile(false);
-            readDataAnimal((result) => setAnimals(result))
-            readData((result) => setFoods(result))
-            getAllUser((result) => setUsers(result))
-        }
+        readDataAnimal((result) => setAnimals(result))
+        readData((result) => setFoods(result))
+        getAllUser((result) => setUsers(result))
     }, []);
 
     const items = [

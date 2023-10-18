@@ -1,10 +1,7 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { Outlet } from 'react-router-dom'
 
-const ProfilePage = ({ setOnProfile }) => {
-    useEffect(() => {
-        setOnProfile(true);
-    }, [])
+const ProfilePage = () => {
     return (
         <div><Outlet></Outlet></div>
     )
