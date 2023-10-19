@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React from "react";
+import { useSelector } from "react-redux";
 import {
   FaStickerMule,
   FaApple,
@@ -13,6 +13,7 @@ import {
 import SidebarMenu from "./SidebarMenu";
 
 const SideBar = () => {
+  const { isLogin } = useSelector((state) => state.auth)
   const items = [
     {
       link: '/',
@@ -60,19 +61,17 @@ const SideBar = () => {
       label: 'User Ticket'
     },
   ]
+
   return (
     <>
-      <aside
-        id="default-sidebar"
-        className="fixed top-[64px] left-0 z-10 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0"
-        aria-label="Sidebar"
-      >
+      <aside className={`fixed top-[64px] left-0 z-10 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0 border-2 border-red-500 ${!isLogin && 'hidden'}`}>
         <div className="h-full px-3 py-4 overflow-y-auto bg-gray-100 dark:bg-gray-800">
           <ul className="mt-5 space-y-2 font-medium">
             {
               items.map((item, i) => {
                 return (
                   <SidebarMenu
+                    key={i}
                     link={item.link}
                     icon={item.icon}
                     label={item.label}

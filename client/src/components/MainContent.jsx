@@ -28,42 +28,36 @@ import {
 const MainContent = () => {
     return (
         <Routes>
-            <Route path='' element={
-                <HomePage />} />
-            <Route path='login' element={
-                <LoginPage />} />
+            <Route path='' element={<HomePage />} />
+            <Route path='login' element={<LoginPage />} />
             <Route path='register' element={<SignUpPage />} />
             <Route path='animals' element={<AnimalPage />}>
-                <Route path='' element={<ShowAnimalPage />}></Route>
+                <Route path='' element={<ShowAnimalPage />} />
             </Route>
             <Route path='foods' element={<FoodPage />}>
                 <Route path='' element={<ShowFoodPage />} />
             </Route>
             <Route path='classTypes' element={<ClassTypePage />}>
-                <Route path='' element={<ShowClassTypePage />}></Route>
+                <Route path='' element={<ShowClassTypePage />} />
             </Route>
             <Route path='habitats' element={<HabitatPage />}>
-                <Route path='' element={<ShowHabitatPage />}></Route>
+                <Route path='' element={<ShowHabitatPage />} />
             </Route>
             <Route path='transactions' element={<PaymentPage />}>
-                <Route path='' element={<ShowPaymentPage />}></Route>
+                <Route path='' element={<ShowPaymentPage />} />
             </Route>
             <Route path='tickets' element={<TicketPage />}>
-                <Route path='' element={<ShowTicketPage />}></Route>
+                <Route path='' element={<ShowTicketPage />} />
             </Route>
             <Route path='userTickets' element={<UserTicketPage />}>
-                <Route path='' element={<ShowUserTicketPage />}></Route>
+                <Route path='' element={<ShowUserTicketPage />} />
             </Route>
-            <Route path='profile' element={
-                <ProfilePage />}>
-                <Route path='' element={
-                    <UserInfoPage />}></Route>
+            <Route path='profile' element={<ProfilePage />}>
+                <Route path='' element={<UserInfoPage />} />
                 <Route path='animals-cares' element={<AnimalCarePage />} />
             </Route>
-            <Route path='profile' element={
-                <ProfilePage />}>
-                <Route path='' element={
-                    <UserInfoPage />}></Route>
+            <Route path='profile' element={<ProfilePage />}>
+                <Route path='' element={<UserInfoPage />} />
             </Route>
             <Route path='users' element={<UserPage />}>
                 <Route path='' element={<ShowUserPage />} />

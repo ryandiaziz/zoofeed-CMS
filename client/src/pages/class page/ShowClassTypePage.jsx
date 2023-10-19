@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react'
+
 import { getClassType } from '../../axios/classType'
 import Table from '../../components/Table';
 import TableData from './components/TableData';
 import ModalDetail from './components/ModalDetail';
+import MainContainer from '../../components/MainContainer'
 
 const ShowClassTypePage = () => {
     const [id, setId] = useState(0)
@@ -33,13 +35,12 @@ const ShowClassTypePage = () => {
                 setShowModalDetail={setShowModalDetail}
                 modalCheck={modalCheck}
             />
-            <div className="p-4 sm:ml-64 pt-[85px] h-min">
-                {/* Table */}
+            <MainContainer>
                 <Table
                     tHead={tableHead}
                     tBody={tBody}
                 />
-            </div>
+            </MainContainer>
         </>
     )
 }

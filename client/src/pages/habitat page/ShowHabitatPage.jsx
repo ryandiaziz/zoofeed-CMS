@@ -3,6 +3,7 @@ import { getHabitat } from '../../axios/habitat';
 import Table from '../../components/Table';
 import TableData from './components/TableData';
 import ModalDetail from './components/ModalDetail';
+import MainContainer from '../../components/MainContainer';
 
 const ShowHabitatPage = () => {
     const tableHead = ["Name", "Description", "action"];
@@ -34,13 +35,13 @@ const ShowHabitatPage = () => {
                 setShowModalDetail={setShowModalDetail}
                 modalCheck={modalCheck}
             />
-            <div className="p-4 sm:ml-64 h-min pt-[85px]">
+            <MainContainer>
                 {/* Table */}
                 <Table
                     tHead={tableHead}
                     tBody={tBody}
                 />
-            </div>
+            </MainContainer>
         </>
     )
 }

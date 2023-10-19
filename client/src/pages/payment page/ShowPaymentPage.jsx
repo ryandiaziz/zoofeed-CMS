@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+
 import {
   getPayment,
   updatePayment,
@@ -8,6 +9,7 @@ import Pagination from '../../components/Pagination';
 import Search from "../../components/Search";
 import TableData from "./components/TableData";
 import Table from '../../components/Table';
+import MainContainer from "../../components/MainContainer";
 
 const ShowPaymentPage = () => {
   const [Payment, setPayment] = useState([]);
@@ -60,7 +62,7 @@ const ShowPaymentPage = () => {
 
   return (
     <>
-      <div className="p-4 sm:ml-64 h-min pt-[85px]">
+      <MainContainer>
         <div className="py-5">
           <Search
             handleFilterChange={handleFilterChange}
@@ -76,7 +78,7 @@ const ShowPaymentPage = () => {
           setCurrentPage={setCurrentPage}
           currentPage={currentPage}
         />
-      </div>
+      </MainContainer>
     </>
   );
 };

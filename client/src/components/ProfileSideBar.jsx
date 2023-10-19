@@ -1,18 +1,13 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React from "react";
+import { useSelector } from "react-redux";
 import {
     FaStickerMule,
-    FaApple,
-    FaMountain,
-    FaPaw,
     FaUser,
-    FaChartPie,
-    FaTicketAlt,
-    FaCcVisa,
 } from "react-icons/fa";
 import SidebarMenu from "./SidebarMenu";
 
 const ProfileSideBar = () => {
+    const { isLogin } = useSelector((state) => state.auth)
     const items = [
         {
             label: 'User Info',
@@ -29,7 +24,7 @@ const ProfileSideBar = () => {
         <>
             <aside
                 id="default-sidebar"
-                className="fixed top-[64px] left-0 z-10 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0"
+                className={`fixed top-[64px] left-0 z-10 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0 ${!isLogin && 'hidden'}`}
                 aria-label="Sidebar"
             >
                 <div className="h-full px-3 py-4 overflow-y-auto bg-gray-100 dark:bg-gray-800">

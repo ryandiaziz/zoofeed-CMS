@@ -7,6 +7,7 @@ import SideBar from './components/SideBar';
 import NavBar from './components/NavBar';
 import MainContent from './components/MainContent';
 import { fetchUser } from './redux/authSlice';
+import MainContainer from './components/MainContainer';
 import ProfileSideBar from './components/ProfileSideBar';
 import Loading from './components/Loading';
 
@@ -27,20 +28,14 @@ function App() {
   }, [])
 
   return (
-    <>
-      {
-        loading.fetch
-          ? <Loading />
-          : <><div className='fixed top-0 bottom-0 right-0 left-0 dark:bg-slate-900' />
-            <div className={!isLogin && 'hidden'}>
-              <NavBar />
-              <ProfileSideBar />
-              <SideBar />
-            </div>
-            <MainContent />
-          </>
-      }
-    </>
+    loading.fetch
+      ? <Loading />
+      : <>
+        <NavBar />
+        {/* <ProfileSideBar /> */}
+        <SideBar />
+        <MainContent />
+      </>
   );
 }
 

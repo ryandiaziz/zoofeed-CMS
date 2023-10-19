@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react'
+
 import { getAllUser } from '../../axios/user'
 import Table from '../../components/Table';
 import TableData from './components/TableData';
 import Pagination from '../../components/Pagination';
+import MainContainer from '../../components/MainContainer';
 
 const ShowUserPage = () => {
     const tableHead = ['Name', 'Email', 'Role'];
@@ -22,7 +24,7 @@ const ShowUserPage = () => {
     />
     return (
         <>
-            <div className="p-4 sm:ml-64 h-min pt-[85px]">
+            <MainContainer>
                 <Table
                     tHead={tableHead}
                     tBody={tBody}
@@ -33,7 +35,7 @@ const ShowUserPage = () => {
                     setCurrentPage={setCurrentPage}
                     currentPage={currentPage}
                 />
-            </div>
+            </MainContainer>
         </>
     )
 }

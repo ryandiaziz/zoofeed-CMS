@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+
 import { readDataAnimal, deleteData, searchAnimal } from '../../axios/animal';
 import ModalDetail from './components/ModalDetail';
 import ModalAdd from './components/ModalAdd';
@@ -9,6 +10,7 @@ import TableData from './components/TableData';
 import Table from '../../components/Table';
 import Search from '../../components/Search';
 import Button from '../../components/Button';
+import MainContainer from '../../components/MainContainer';
 
 
 const ShowAnimalPage = ({ loginStatus }) => {
@@ -93,50 +95,48 @@ const ShowAnimalPage = ({ loginStatus }) => {
     />
 
     return (
-        <>
-            <div className="p-4 sm:ml-64 pt-[85px] h-min">
-                <ModalDetail
-                    id={id}
-                    modalCheck={modalCheck}
-                    showModalDetail={showModalDetail}
-                    setShowModalDetail={setShowModalDetail}
+        <MainContainer>
+            <ModalDetail
+                id={id}
+                modalCheck={modalCheck}
+                showModalDetail={showModalDetail}
+                setShowModalDetail={setShowModalDetail}
+            />
+            <ModalAdd
+                changeData={changeData}
+                setChangeData={setChangeData}
+                modalCheck={modalCheck}
+                showModalAdd={showModalAdd}
+                setShowModalAdd={setShowModalAdd}
+            />
+            <ModalEdit
+                id={id}
+                changeData={changeData}
+                setChangeData={setChangeData}
+                modalCheck={modalCheck}
+                showModalEdit={showModalEdit}
+                setShowModalEdit={setShowModalEdit}
+            />
+            {/* Search Bar */}
+            <div className=' flex flex-wrap justify-between py-5'>
+                <Search
+                    handleFilterChange={handleFilterChange}
                 />
-                <ModalAdd
-                    changeData={changeData}
-                    setChangeData={setChangeData}
-                    modalCheck={modalCheck}
-                    showModalAdd={showModalAdd}
-                    setShowModalAdd={setShowModalAdd}
-                />
-                <ModalEdit
-                    id={id}
-                    changeData={changeData}
-                    setChangeData={setChangeData}
-                    modalCheck={modalCheck}
-                    showModalEdit={showModalEdit}
-                    setShowModalEdit={setShowModalEdit}
-                />
-                {/* Search Bar */}
-                <div className=' flex flex-wrap justify-between py-5'>
-                    <Search
-                        handleFilterChange={handleFilterChange}
-                    />
-                    <Button
-                        onClick={handleAdd}
-                    />
-                </div>
-                <Table
-                    tHead={tHead}
-                    tBody={tBody}
-                />
-                <Pagination
-                    totalPosts={items.length}
-                    postPerPage={postPerPage}
-                    setCurrentPage={setCurrentPage}
-                    currentPage={currentPage}
+                <Button
+                    onClick={handleAdd}
                 />
             </div>
-        </>
+            <Table
+                tHead={tHead}
+                tBody={tBody}
+            />
+            <Pagination
+                totalPosts={items.length}
+                postPerPage={postPerPage}
+                setCurrentPage={setCurrentPage}
+                currentPage={currentPage}
+            />
+        </MainContainer>
     )
 }
 

@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
+
 import { getTicket } from "../../axios/ticket";
 import ModalEdit from './components/ModalEdit';
 import Table from '../../components/Table';
 import TableData from "./components/TableData";
+import MainContainer from "../../components/MainContainer";
 
 const ShowPaymentPage = () => {
   const [ticket, setTicket] = useState([]);
@@ -37,13 +39,13 @@ const ShowPaymentPage = () => {
         showModalEdit={showModalEdit}
         setShowModalEdit={setShowModalEdit}
       />
-      <div className="p-4 sm:ml-64 h-min pt-[85px]">
+      <MainContainer>
         {/* Table */}
         <Table
           tHead={tHead}
           tBody={tBody}
         />
-      </div>
+      </MainContainer>
     </>
   );
 };

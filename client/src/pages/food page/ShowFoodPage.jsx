@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+
 import { readData, deleteDataF, searchFood } from '../../axios/food'
 import Pagination from '../../components/Pagination'
 import ModalAdd from './components/ModalAdd'
@@ -8,6 +9,7 @@ import Table from '../../components/Table'
 import TableData from './components/TableData'
 import Search from '../../components/Search'
 import Button from '../../components/Button'
+import MainContainer from '../../components/MainContainer'
 
 const ShowFoodPage = ({ loginStatus }) => {
     const tHead = ['Name', 'Type', 'Stock', 'Price', 'Action'];
@@ -77,7 +79,7 @@ const ShowFoodPage = ({ loginStatus }) => {
 
     return (
         <>
-            <div className="p-4 sm:ml-64 pt-[85px] h-min">
+            <MainContainer>
                 <ModalDetail
                     id={id}
                     detailCheck={detailCheck}
@@ -120,7 +122,7 @@ const ShowFoodPage = ({ loginStatus }) => {
                     setCurrentPage={setCurrentPage}
                     currentPage={currentPage}
                 />
-            </div>
+            </MainContainer>
         </>
     )
 }

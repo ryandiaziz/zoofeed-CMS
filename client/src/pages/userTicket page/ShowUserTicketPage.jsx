@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+
 import {
   getUserTicket,
   updateUserTicket,
@@ -10,6 +11,7 @@ import ModalEdit from "./components/ModalEdit";
 import Search from '../../components/Search';
 import TableData from "./components/TableData";
 import Table from "../../components/Table";
+import MainContainer from "../../components/MainContainer";
 
 const ShowUserTicketPage = () => {
   const [ticket, setTicket] = useState([]);
@@ -67,7 +69,7 @@ const ShowUserTicketPage = () => {
         showModalEdit={showModalEdit}
         setShowModalEdit={setShowModalEdit}
       />
-      <div className="p-4 sm:ml-64 h-min pt-[85px]">
+      <MainContainer>
         {/* Search Bar */}
         <div className=" flex flex-wrap justify-between py-5">
           {/* Search */}
@@ -97,7 +99,7 @@ const ShowUserTicketPage = () => {
           setCurrentPage={setCurrentPage}
           currentPage={currentPage}
         />
-      </div>
+      </MainContainer>
     </>
   );
 };

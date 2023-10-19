@@ -1,10 +1,12 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react'
-import DashboardCard from '../components/DashboardCard';
 import { FaStickerMule, FaApple, FaUser } from 'react-icons/fa'
+
 import { readDataAnimal } from '../axios/animal';
 import { readData } from '../axios/food';
 import { getAllUser } from '../axios/user';
+import DashboardCard from '../components/DashboardCard';
+import MainContainer from '../components/MainContainer';
 
 const HomePage = () => {
     const [animals, setAnimals] = useState([])
@@ -39,7 +41,7 @@ const HomePage = () => {
     ]
 
     return (
-        <div className="p-4 sm:ml-64 pt-[85px] h-min">
+        <MainContainer>
             <div className='flex flex-wrap gap-3'>
                 {
                     items.map((item) => {
@@ -54,7 +56,7 @@ const HomePage = () => {
                     })
                 }
             </div>
-        </div>
+        </MainContainer>
     )
 }
 
