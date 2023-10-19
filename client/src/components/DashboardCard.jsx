@@ -2,7 +2,7 @@ import React from 'react'
 
 const DashboardCard = (props) => {
     return (
-        <div className={`${props.color} w-1/4 h-40 rounded-md shadow-md relative pl-7 flex flex-col justify-center dark:bg-slate-900 dark:border-2`}>
+        <div className={`${props.color} w-full md:w-1/4 h-40 rounded-md shadow-md relative pl-7 flex flex-col justify-center dark:bg-slate-900 dark:border-2`}>
             <div className='absolute top-5 right-5'>
                 {props.icon}
             </div>

@@ -100,7 +100,7 @@ const LoginPage = () => {
                             : null
                     }
                 </div>
-                <button type='submit' className="mt-5 w-full text-white bg-[#019267] hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"> {loading.login ? <Loading /> : "Login"}</button>
+                <button type='submit' className="mt-5 w-full text-white bg-[#019267] hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-4 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"> {loading.login ? <Loading /> : "Login"}</button>
                 <p className="mt-3 text-sm font-light text-blue-gray-500 dark:text-blue-gray-400">
                     Don’t have an account yet? <Link to={'/register'} className="font-medium text-primary-600 hover:underline dark:text-primary-500">Create an account</Link>
                 </p>

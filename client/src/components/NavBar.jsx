@@ -1,7 +1,9 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useRef, useEffect } from 'react'
 import { FaMoon, FaSun } from 'react-icons/fa'
+import { FiMenu } from 'react-icons/fi'
 import { useNavigate, Link } from 'react-router-dom'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import {
     Tooltip,
     Menu,
@@ -12,17 +14,18 @@ import {
     Typography,
 } from "@material-tailwind/react";
 
-const NavBar = () => {
+import LOGOWHITE from '../assets/zoo feed-03.png'
+import { setsidebar } from '../redux/menuSlice'
+import { logout } from '../redux/authSlice'
+
+const NavBar = ({ menuRef }) => {
+    const navigate = useNavigate()
+    const dispatch = useDispatch()
     const { user, isLogin } = useSelector((state) => state.auth)
-    const navigate = useNavigate();
-    const [open, setOpen] = useState(false);
     const [theme, setTheme] = useState("light")
-    const menuRef = useRef();
-    const imgRef = useRef();
 
     const logoutHandler = () => {
-        localStorage.clear()
-        navigate('/login')
+        dispatch(logout())
     }
 
     useEffect(() => {
@@ -46,24 +49,31 @@ const NavBar = () => {
     }
 
 
-    window.addEventListener('click', (e) => {
-        if (e.target !== menuRef.current && e.target !== imgRef.current) {
-            setOpen(false);
+    useEffect(() => {
+        if (!isLogin) {
+            navigate('/login')
         }
-    })
+    }, [isLogin])
 
     return (
-        <header className={`z-20 bg-[#019267] dark:bg-gray-800 sticky top-0 flex flex-wrap items-center justify-between p-4 border-2 border-red-600 w-screen ${!isLogin && 'hidden'}`}>
+        <header className={`bg-[#019267] z-50 fixed top-0 flex flex-wrap items-center justify-between p-2 h-20 w-full md:px-10 lg:h-24 dark:bg-blue-gray-900 ${!isLogin && 'hidden'}`}>
+            <div
+                onClick={() => dispatch(setsidebar())}
+                ref={menuRef}
+                className='static md:hidden'
+            >
+                <FiMenu color='white' size={'2em'} />
+            </div>
             <Link to='/'>
-                <span className="font-inter font-bold cursor-pointer self-center text-2xl text-white whitespace-nowrap dark:text-white">Zoo Feed</span>
+                <img src={LOGOWHITE} alt="Logo" className='w-12 md:w-20' />
             </Link>
-            <div className="flex items-center md:order-2">
+            <div className="flex items-center">
                 {/* Dark mode button */}
                 <Tooltip
-                    className='z-30 p-3'
+                    className='z-50 p-3'
                     content={`${theme === 'light' ? 'Dark Mode' : 'Light Mode'}`}
                 >
-                    <div onClick={handleThemeSwitch} className='hover:bg-slate-700 rounded-full p-2 cursor-pointer mr-7 dark:hover:bg-slate-700 h-8 w-8 flex justify-center items-center'>
+                    <div onClick={handleThemeSwitch} className='hover:bg-slate-700 rounded-full p-2 cursor-pointer mr-7 dark:hover:bg-slate-700 h-8 w-8 md:flex justify-center items-center hidden md:static'>
                         {
                             theme === 'light'
                                 ? <FaMoon className='fill-slate-200' />
@@ -75,8 +85,8 @@ const NavBar = () => {
                     <MenuHandler>
                         <Avatar
                             variant="circular"
-                            alt="candice wu"
-                            className="cursor-pointer"
+                            alt="Profile"
+                            className="cursor-pointer w-12"
                             src={`https://zoofeed-api-gamma.vercel.app/${user.imageUrl}`}
                         />
                     </MenuHandler>

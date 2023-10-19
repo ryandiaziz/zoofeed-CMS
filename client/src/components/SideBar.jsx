@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useRef, useEffect } from "react";
 import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import {
   FaStickerMule,
   FaApple,
@@ -10,10 +11,12 @@ import {
   FaTicketAlt,
   FaCcVisa,
 } from "react-icons/fa";
+
 import SidebarMenu from "./SidebarMenu";
 
-const SideBar = () => {
+const SideBar = ({ sidebarRef }) => {
   const { isLogin } = useSelector((state) => state.auth)
+  const { isSidebarOpen } = useSelector((state) => state.menu)
   const items = [
     {
       link: '/',
@@ -63,26 +66,24 @@ const SideBar = () => {
   ]
 
   return (
-    <>
-      <aside className={`fixed top-[64px] left-0 z-10 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0 border-2 border-red-500 ${!isLogin && 'hidden'}`}>
-        <div className="h-full px-3 py-4 overflow-y-auto bg-gray-100 dark:bg-gray-800">
-          <ul className="mt-5 space-y-2 font-medium">
-            {
-              items.map((item, i) => {
-                return (
-                  <SidebarMenu
-                    key={i}
-                    link={item.link}
-                    icon={item.icon}
-                    label={item.label}
-                  />
-                )
-              })
-            }
-          </ul>
-        </div>
-      </aside>
-    </>
+    <aside ref={sidebarRef} className={`fixed top-20 lg:top-24 left-0 z-50 w-64 h-full transition-transform -translate-x-full md:translate-x-0 ${!isLogin && 'hidden'} ${isSidebarOpen && 'translate-x-0'}`}>
+      <div className="h-full px-3 overflow-y-auto bg-gray-100 dark:bg-gray-800">
+        <ul className="mt-3 space-y-2 font-medium">
+          {
+            items.map((item, i) => {
+              return (
+                <SidebarMenu
+                  key={i}
+                  link={item.link}
+                  icon={item.icon}
+                  label={item.label}
+                />
+              )
+            })
+          }
+        </ul>
+      </div>
+    </aside>
   );
 };
 
